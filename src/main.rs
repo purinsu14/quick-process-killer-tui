@@ -254,6 +254,30 @@ fn main() -> Result<(), io::Error> {
                     search_mode = true;
                 }
 
+                KeyCode::Esc => {
+                    // clear search
+                    if search_mode {
+                        search_mode = false;
+                        search_query.clear();
+                        filtered = filter_processes(&processes, &search_query, &matcher);
+                    }
+                }
+
+                KeyCode::Backspace => {
+                    if search_mode {
+                        search_query.pop();
+                        filtered = filter_processes(&processes, &search_query, &matcher);
+                    }
+                }
+
+                KeyCode::Char(c) if search_mode => {
+                    // type to search
+                    if c.is_alphanumeric() || c.is_ascii_punctuation() || c == ' ' {
+                        search_query.push(c);
+                        filtered = filter_processes(&processes, &search_query, &matcher);
+                    }
+                }
+
                 KeyCode::Char('q') => break,
 
                 KeyCode::Down => {
@@ -288,30 +312,6 @@ fn main() -> Result<(), io::Error> {
                         SortMode::Cpu => SortMode::Memory,
                         SortMode::Memory => SortMode::Name,
                     };
-                }
-
-                KeyCode::Char(c) => {
-                    // type to search
-                    if c.is_alphanumeric() || c.is_ascii_punctuation() || c == ' ' {
-                        search_query.push(c);
-                        filtered = filter_processes(&processes, &search_query, &matcher);
-                    }
-                }
-
-                KeyCode::Backspace => {
-                    if search_mode {
-                        search_query.pop();
-                        filtered = filter_processes(&processes, &search_query, &matcher);
-                    }
-                }
-
-                KeyCode::Esc => {
-                    // clear search
-                    if search_mode {
-                        search_mode = false;
-                        search_query.clear();
-                        filtered = filter_processes(&processes, &search_query, &matcher);
-                    }
                 }
 
                 _ => {}
