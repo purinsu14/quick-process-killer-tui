@@ -1,0 +1,11 @@
+[package]
+name = "killer-tui"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+ratatui = "0.30"      # The TUI framework
+crossterm = "0.29"    # Handles keyboard inputs and terminal control
+sysinfo = "0.38"      # To get the process list
+libc = "0.2"          #libc for linux
+fuzzy-matcher = "0.3" #fuzzy search
