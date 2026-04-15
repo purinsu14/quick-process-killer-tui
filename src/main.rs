@@ -167,6 +167,8 @@ fn main() -> Result<(), io::Error> {
 
     let mut last_refresh = Instant::now();
 
+    let mut search_mode = false;
+
     // terminal setup
     enable_raw_mode()?;
     let mut stdout = io::stdout();
@@ -233,7 +235,7 @@ fn main() -> Result<(), io::Error> {
                 .block(
                     Block::default()
                         .title(format!(
-                            " [q]uit | [k]ill process | [s]ort: {} | query: {} ",
+                            " [q] quit | [k] kill process | [s] sort: {} | [/] search: {} ",
                             sort_label, search_query
                         ))
                         .borders(Borders::ALL),
@@ -248,6 +250,10 @@ fn main() -> Result<(), io::Error> {
             && let Event::Key(key) = event::read()?
         {
             match key.code {
+                KeyCode::Char('/') => {
+                    search_mode = true;
+                }
+
                 KeyCode::Char('q') => break,
 
                 KeyCode::Down => {
@@ -288,16 +294,24 @@ fn main() -> Result<(), io::Error> {
                     // type to search
                     if c.is_alphanumeric() || c.is_ascii_punctuation() || c == ' ' {
                         search_query.push(c);
+                        filtered = filter_processes(&processes, &search_query, &matcher);
                     }
                 }
 
                 KeyCode::Backspace => {
-                    search_query.pop();
+                    if search_mode {
+                        search_query.pop();
+                        filtered = filter_processes(&processes, &search_query, &matcher);
+                    }
                 }
 
                 KeyCode::Esc => {
                     // clear search
-                    search_query.clear();
+                    if search_mode {
+                        search_mode = false;
+                        search_query.clear();
+                        filtered = filter_processes(&processes, &search_query, &matcher);
+                    }
                 }
 
                 _ => {}

@@ -4,12 +4,12 @@ A fast and minimal terminal-based process viewer and killer built with Rust and 
 
 ## Features
 
+* **Quick Kill:** Instantly terminate all processes in a group.
 * **Grouped Processes:** Groups related processes under a single app name (e.g. browser instances).
 * **Fuzzy Search:** Quickly find processes by typing part of the name.
 * **Live Updates:** Automatically refreshes process data every few seconds.
 * **CPU & Memory Stats:** Displays CPU usage and memory usage per group.
 * **Sorting Modes:** Sort by name, CPU usage, or memory usage.
-* **Quick Kill:** Instantly terminate all processes in a group.
 
 ## Prerequisites
 
@@ -65,12 +65,13 @@ You can run it directly:
 ## Controls
 
 ```
-↑ / ↓        Navigate
+↑ or ↓       Navigate
 k            Kill selected process group
 s            Change sorting mode
+/            Start search query
 type         Search (fuzzy)
 Backspace    Delete search input
-Esc          Clear search
+Esc          Quit search
 q            Quit
 ```
 
