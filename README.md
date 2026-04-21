@@ -19,7 +19,7 @@ You will need [Rust and Cargo](https://www.rust-lang.org/tools/install) installe
 
 **1. Clone the repository**
 ```bash
-git clone [https://github.com/purinsu14/process-killer-tui.git](https://github.com/purinsu14/process-killer-tui.git)
+git clone https://github.com/purinsu14/process-killer-tui.git
 cd process-killer-tui
 ```
 
