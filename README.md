@@ -39,7 +39,7 @@ You can then run the binary directly or move it to your PATH:
 # Optional: sudo mv ./target/release/process-killer-tui /usr/local/bin/pkiller
 ```
 
-## 🎮 Controls
+## Controls
 
 | Key | Action |
 | :--- | :--- |
