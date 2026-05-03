@@ -1,10 +1,10 @@
-# ⚡ Process Killer TUI
+# Process Killer TUI
 
 A fast, minimal, and safe terminal-based process viewer and killer built with Rust and Ratatui. 
 
 Built because traditional process managers either clutter the screen with 50 child processes for a single browser instance, or calculate memory in ways that make a 4GB app look like it's using 16GB. This tool groups them up and gives you the honest numbers.
 
-## ✨ Features
+## Features
 
 * **Smart Grouping:** Related processes are grouped under a single app name (e.g., all Vivaldi/Spotify sub-processes appear as one entry).
 * **Always-On Fuzzy Search:** Just start typing. No need to hit `/` or switch modes. Results filter instantly using a fuzzy matcher.
@@ -13,7 +13,7 @@ Built because traditional process managers either clutter the screen with 50 chi
 * **Honest Memory Stats:** Bypasses the "shared memory trap" on Linux by displaying the max memory footprint of a group, color-coded by severity.
 * **Sorting Modes:** Cycle seamlessly between sorting by Name, CPU usage, or Memory usage.
 
-## 🚀 Installation
+## Installation
 
 You will need [Rust and Cargo](https://www.rust-lang.org/tools/install) installed on your system. 
 
@@ -51,13 +51,13 @@ You can then run the binary directly or move it to your PATH:
 | `Backspace`| Delete last search character |
 | `Esc` | Clear search query |
 
-## 🧠 Technical Notes
+##  Technical Notes
 
 * **Memory Calculation:** Memory is reported as the highest (peak) usage among processes in a specific group. It may differ slightly from tools like `btop` due to how shared memory is deduplicated.
 * **Kill Signals:** Pressing `k` sends a kill signal to *all* PIDs associated with that group name. 
 * **Permissions:** If you are trying to kill system-level processes or apps owned by other users, you will need to run this tool with `sudo`.
 
-## 🛠️ Built With
+## Built With
 * [Ratatui](https://ratatui.rs/) - Terminal UI rendering
 * [sysinfo](https://crates.io/crates/sysinfo) - Cross-platform system information
 * [crossterm](https://crates.io/crates/crossterm) - Terminal backend
