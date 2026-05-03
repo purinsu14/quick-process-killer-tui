@@ -1,67 +1,39 @@
-# Process Killer TUI
+## Process Killer TUI in Rust
 
-A fast, minimal, and safe terminal-based process viewer and killer built with Rust and Ratatui. 
+An easy to use terminal-based process viewer and killer written in Rust.
 
-Built because traditional process managers either clutter the screen with 50 child processes for a single browser instance, or calculate memory in ways that make a 4GB app look like it's using 16GB. This tool groups them up and gives you the honest numbers.
+Pre-built binary for Linux available on the [releases page](https://github.com/purinsu14/process-killer-tui/releases).
 
-## Features
-
-* **Smart Grouping:** Related processes are grouped under a single app name (e.g., all Vivaldi/Spotify sub-processes appear as one entry).
-* **Always-On Fuzzy Search:** Just start typing. No need to hit `/` or switch modes. Results filter instantly using a fuzzy matcher.
-* **Quick Kill:** Instantly terminate all processes in a grouped tree with a single keypress (`k`).
-* **Live Updates:** Process data refreshes automatically without interrupting your search query or cursor position.
-* **Honest Memory Stats:** Bypasses the "shared memory trap" on Linux by displaying the max memory footprint of a group, color-coded by severity.
-* **Sorting Modes:** Cycle seamlessly between sorting by Name, CPU usage, or Memory usage.
-
-## Installation
-
-You will need [Rust and Cargo](https://www.rust-lang.org/tools/install) installed on your system. 
-
-**1. Clone the repository**
-```bash
+## Install (with Rust)
 git clone https://github.com/purinsu14/process-killer-tui.git
 cd process-killer-tui
-```
+cargo install --path .
 
-**2. Build and Run (Development)**
-```bash
+or just run directly:
 cargo run
-```
 
-**3. Build Optimized Binary (Recommended)**
-For the best performance and lowest overhead, build the release version:
-```bash
-cargo build --release
-```
-You can then run the binary directly or move it to your PATH:
-```bash
-./target/release/process-killer-tui
-# Optional: sudo mv ./target/release/process-killer-tui /usr/local/bin/pkiller
-```
+## Install with binary (no Rust needed)
+
+Download the binary, open terminal in the download path, then:
+./process-killer-tui
 
 ## Controls
 
 | Key | Action |
 | :--- | :--- |
 | `↑` / `↓` | Navigate the process list |
-| `k` | **Kill** the selected process group |
-| `s` | Cycle **Sort** mode (Name → CPU → Memory) |
-| `q` | **Quit** the application |
-| `[Type]` | **Search** — just start typing letters/numbers |
-| `Backspace`| Delete last search character |
-| `Esc` | Clear search query |
+| `k` | Kill the selected process group |
+| `s` | Cycle sort mode (Name → CPU → Memory) |
+| `q` | Quit |
+| `[Type]` | Search, just start typing |
+| `Backspace` | Delete last search character |
+| `Esc` | Clear search |
 
-##  Technical Notes
+## Notes
 
-* **Memory Calculation:** Memory is reported as the highest (peak) usage among processes in a specific group. It may differ slightly from tools like `btop` due to how shared memory is deduplicated.
-* **Kill Signals:** Pressing `k` sends a kill signal to *all* PIDs associated with that group name. 
-* **Permissions:** If you are trying to kill system-level processes or apps owned by other users, you will need to run this tool with `sudo`.
-
-## Built With
-* [Ratatui](https://ratatui.rs/) - Terminal UI rendering
-* [sysinfo](https://crates.io/crates/sysinfo) - Cross-platform system information
-* [crossterm](https://crates.io/crates/crossterm) - Terminal backend
-* [fuzzy-matcher](https://crates.io/crates/fuzzy-matcher) - Skim-style fuzzy search
+- Memory is reported as the peak usage among processes in a group.
+- `k` sends a kill signal to all PIDs in that group.
+- Run with `sudo` to kill system-level or other-user processes.
 
 ---
 *Made by [purinsu14](https://github.com/purinsu14)*
