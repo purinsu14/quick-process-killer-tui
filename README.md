@@ -1,6 +1,7 @@
 ## Process Killer TUI in Rust
 
 An easy to use terminal-based process viewer and killer written in Rust.
+Equipped with fuzzy search, live updates, sorting modes, and smart grouping.
 
 Pre-built binary for Linux available on the [releases page](https://github.com/purinsu14/process-killer-tui/releases).
 
