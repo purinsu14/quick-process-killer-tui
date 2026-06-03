@@ -3,20 +3,27 @@
 An easy to use terminal-based process viewer and killer written in Rust.
 Equipped with fuzzy search, live updates, sorting modes, and smart grouping.
 
-Pre-built binary for Linux available on the [releases page](https://github.com/purinsu14/process-killer-tui/releases).
+Pre-built binary for Linux available on the [releases page](https://github.com/purinsu14/quick-process-killer-tui/releases).
 
 ## Install (with Rust)
-git clone https://github.com/purinsu14/process-killer-tui.git
+```
+git clone https://github.com/purinsu14/quick-process-killer-tui.git
 cd process-killer-tui
 cargo install --path .
-
-or just run directly:
+quick-process-killer-tui
+```
+or just run directly (in the project directory):
+```
 cargo run
+```
 
 ## Install with binary (no Rust needed)
 
 Download the binary, open terminal in the download path, then:
-./process-killer-tui
+```
+chmod +x <filename>
+./<filename>
+```
 
 ## Controls
 
@@ -26,7 +33,7 @@ Download the binary, open terminal in the download path, then:
 | `k` | Kill the selected process group |
 | `s` | Cycle sort mode (Name → CPU → Memory) |
 | `q` | Quit |
-| `[Type]` | Search, just start typing |
+| `/` | Open search bar |
 | `Backspace` | Delete last search character |
 | `Esc` | Clear search |
 
